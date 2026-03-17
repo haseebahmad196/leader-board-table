@@ -12,7 +12,6 @@ import {
   ChevronDown,
   Medal,
   Activity,
-  CalendarDays,
   TrendingUp,
 } from "lucide-react";
 import StatCard from "@/components/dashboard/StatCard";
@@ -75,7 +74,8 @@ function buildTitleRaceRows(playerRows: PlayerRow[]) {
     let scenario = "Already leading this month";
 
     if (winsNeeded === 1) {
-      scenario = `Needs 1 more straight win to move above the current leader if the leader stays on the same wins`;
+      scenario =
+        "Needs 1 more straight win to move above the current leader if the leader stays on the same wins";
     } else if (winsNeeded > 1) {
       scenario = `Needs ${winsNeeded} more straight wins to realistically take #1 if the leader does not add more wins`;
     }
@@ -106,7 +106,10 @@ export default function DashboardPage() {
   }, [selectedMonthKey]);
 
   const playerRows = selectedMonth.playerRows as PlayerRow[];
-  const titleRaceRows = useMemo(() => buildTitleRaceRows(playerRows), [playerRows]);
+  const titleRaceRows = useMemo(
+    () => buildTitleRaceRows(playerRows),
+    [playerRows]
+  );
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#220001,_#050505_55%)] text-white">
@@ -372,28 +375,44 @@ export default function DashboardPage() {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/5 bg-white/5 px-3 py-3">
                           <div>
-                            <div className={`text-sm font-bold ${teamAWon ? "text-white" : "text-slate-300"}`}>
+                            <div
+                              className={`text-sm font-bold ${
+                                teamAWon ? "text-white" : "text-slate-300"
+                              }`}
+                            >
                               {match.teamA}
                             </div>
                             <div className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
                               Team A
                             </div>
                           </div>
-                          <div className={`text-2xl font-black ${teamAWon ? "text-green-400" : "text-red-300"}`}>
+                          <div
+                            className={`text-2xl font-black ${
+                              teamAWon ? "text-green-400" : "text-red-300"
+                            }`}
+                          >
                             {match.scoreA}
                           </div>
                         </div>
 
                         <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/5 bg-white/5 px-3 py-3">
                           <div>
-                            <div className={`text-sm font-bold ${teamBWon ? "text-white" : "text-slate-300"}`}>
+                            <div
+                              className={`text-sm font-bold ${
+                                teamBWon ? "text-white" : "text-slate-300"
+                              }`}
+                            >
                               {match.teamB}
                             </div>
                             <div className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
                               Team B
                             </div>
                           </div>
-                          <div className={`text-2xl font-black ${teamBWon ? "text-green-400" : "text-red-300"}`}>
+                          <div
+                            className={`text-2xl font-black ${
+                              teamBWon ? "text-green-400" : "text-red-300"
+                            }`}
+                          >
                             {match.scoreB}
                           </div>
                         </div>
@@ -474,11 +493,11 @@ export default function DashboardPage() {
               How the title race is calculated
             </div>
             <p className="text-sm leading-7 text-slate-400">
-              “Wins needed for #1” means the minimum number of extra straight wins
-              a player needs to move above the current leader if the leader does
-              not add more wins. “Estimated matches at current form” uses the
-              player’s current monthly win rate as a rough projection, so it is
-              a scenario guide, not a guarantee.
+              “Wins needed for #1” means the minimum number of extra straight
+              wins a player needs to move above the current leader if the leader
+              does not add more wins. “Estimated matches at current form” uses
+              the player’s current monthly win rate as a rough projection, so it
+              is a scenario guide, not a guarantee.
             </p>
           </div>
         ) : null}
