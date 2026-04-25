@@ -1,3 +1,4 @@
+// src/app/dashboard/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -96,7 +97,7 @@ function buildTitleRaceRows(playerRows: PlayerRow[]) {
 }
 
 export default function DashboardPage() {
-  const [selectedMonthKey, setSelectedMonthKey] = useState("march-2026");
+  const [selectedMonthKey, setSelectedMonthKey] = useState("april-2026");
 
   const selectedMonth = useMemo(() => {
     return (
@@ -487,7 +488,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {selectedMonth.key === "march-2026" ? (
+        {selectedMonth.matchRows?.length ? (
           <div className="mt-6 rounded-[28px] border border-red-900/40 bg-black/75 p-5 shadow-[0_0_30px_rgba(127,29,29,0.18)] sm:p-6">
             <div className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-red-300">
               How the title race is calculated
