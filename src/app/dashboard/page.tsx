@@ -14,6 +14,7 @@ import {
   Medal,
   Activity,
   TrendingUp,
+  Star,
 } from "lucide-react";
 import StatCard from "@/components/dashboard/StatCard";
 import LeaderboardTable from "@/components/dashboard/LeaderboardTable";
@@ -173,13 +174,38 @@ export default function DashboardPage() {
               <div className="mt-4 space-y-3">
                 <p className="max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
                   Official red and black gaming dashboard with separate monthly
-                  standings, team performance, title race scenarios, and match
-                  results.
+                  standings, team performance, title race scenarios, records,
+                  and match results.
                 </p>
 
                 <div className="inline-flex rounded-2xl border border-red-800/40 bg-black/50 px-4 py-3 text-xs font-bold uppercase tracking-[0.18em] text-red-200 sm:text-sm">
                   {selectedMonth.updatedLabel}
                 </div>
+
+                {selectedMonth.records?.length ? (
+                  <div className="rounded-3xl border border-red-800/30 bg-black/55 p-4 sm:p-5">
+                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-red-800/40 bg-red-950/40 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-red-200">
+                      <Star size={14} />
+                      Monthly Record
+                    </div>
+
+                    <div className="space-y-2">
+                      {selectedMonth.records.map((record) => (
+                        <div key={record.title}>
+                          <div className="text-sm font-bold uppercase tracking-[0.16em] text-red-300">
+                            {record.title}
+                          </div>
+                          <div className="mt-1 text-2xl font-black text-white sm:text-3xl">
+                            {record.value}
+                          </div>
+                          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+                            {record.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3">
