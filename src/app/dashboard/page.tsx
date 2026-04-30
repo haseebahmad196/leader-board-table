@@ -189,7 +189,7 @@ export default function DashboardPage() {
                       Monthly Record
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                       {selectedMonth.records.map((record) => (
                         <div key={record.title}>
                           <div className="text-sm font-bold uppercase tracking-[0.16em] text-red-300">
